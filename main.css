@@ -181,13 +181,6 @@ input.left{
     background-color: #99ddff;
 }
 
-.button_fullscreen {
-    position: absolute;
-    bottom: -50px;
-    left: 50%;
-    transform: X(-50%);
-}
-
 /*
 BACKGROUND IMAGE!
 */

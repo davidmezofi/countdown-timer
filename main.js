@@ -74,29 +74,6 @@ function displayTime() {
     display.textContent = minutes + ":" + seconds;
 }
 
-function getCssValuePrefix() {
-    var rtrnVal = ''; //default to standard syntax
-    var prefixes = ['-o-', '-ms-', '-moz-', '-webkit-'];
-
-    // Create a temporary DOM object for testing
-    var dom = document.createElement('div');
-
-    for (var i = 0; i < prefixes.length; i++) {
-        // Attempt to set the style
-        dom.style.background = prefixes[i] + 'linear-gradient(#000000, #ffffff)';
-
-        // Detect if the style was successfully set
-        if (dom.style.background) {
-            rtrnVal = prefixes[i];
-        }
-    }
-
-    dom = null;
-    delete dom;
-
-    return rtrnVal;
-}
-
 // OPEN WINDOW
 
 function openWindow() {
@@ -188,18 +165,6 @@ function vidRescale() {
         $('#player').css({
             'left': -($('#player').outerWidth() - w) / 2
         });
-    }
-}
-
-
-var videoid;
-function parseVideo() {
-    var url = myVideo;
-    videoid = url.match(/(?:https?:\/{2})?(?:w{3}\.)?youtu(?:be)?\.(?:com|be)(?:\/watch\?v=|\/)([^\s&]+)/);
-    if (videoid != null) {
-        console.log("video id = ", videoid[1]);
-    } else {
-        console.log("The youtube url is not valid.");
     }
 }
 

@@ -58,8 +58,6 @@ function displayTime() {
 
     var myMinutes = localStorage.getItem("myMinutes");
     var mySeconds = localStorage.getItem("mySeconds");
-    myVideo = localStorage.getItem("myVideoLink");
-    myImage = localStorage.getItem("myImage");
     var duration = (60 * Number(myMinutes)) + Number(mySeconds);
 
     localStorage.setItem("duration", duration);
@@ -74,7 +72,6 @@ function displayTime() {
     seconds = seconds < 10 ? "0" + seconds : seconds;
 
     display.textContent = minutes + ":" + seconds;
-    parseVideo();
 }
 
 function getCssValuePrefix() {
@@ -99,52 +96,6 @@ function getCssValuePrefix() {
 
     return rtrnVal;
 }
-
-// SETTING BACKGROUND COLORS
-/*
-var colorGradient = [{
-    start: "#ff9a9e",
-    end: "#fad0c4"
-}, {
-    start: "#a18cd1",
-    end: "#fbc2eb"
-}, {
-    start: "#84fab0",
-    end: "#8fd3f4"
-}, {
-    start: "a6c0fe",
-    end: "#f68084"
-}];
-var orientation = "45deg";
-var colors = ['#FAE03C', '#59C9D5', '#EF5229', '#86AF49', '#00939A', '#EF5C6E'];
-
-var active = 0;
-var b = 1;
-var a = 1;
-setInterval(function () {
-    if (b != 1) {
-        b = 1;
-        a = 2;
-    } else {
-        b = 2;
-        a = 1;
-    }
-    var currentBack = ".background" + b;
-    // change background color of body
-    //document.querySelector('body').style.backgroundimage = colors[active];
-    document.querySelector(currentBack).style.backgroundImage = getCssValuePrefix() + 'linear-gradient(' + orientation + ', ' + colorGradient[active].start + ', ' + colorGradient[active].end + ')';
-    //change button text hover color
-    $("#myStyle").html('.button:hover {color: ' + colorGradient[active].start + '}');
-    setTimeout(function () {
-        document.querySelector('.background' + b).style.opacity = 1;
-        document.querySelector('.background' + a).style.opacity = 0;
-    }, 2000);
-
-    active++;
-    if (active == colorGradient.length) active = 0;
-}, 20000);
-*/
-
 
 // OPEN WINDOW
 
@@ -187,47 +138,11 @@ function startTimer(duration, display) {
         minutes = minutes < 10 ? "0" + minutes : minutes;
         seconds = seconds < 10 ? "0" + seconds : seconds;
 
-        // HIDING THE TIMER AND SHOWING PICTURE
-
         display.textContent = minutes + ":" + seconds;
         console.log(minutes + ":" + seconds);
-        if (timer < 15 && videolive == 0) {
-            if(videoid != null) {
-                player.loadVideoById(videoid[1]);
-                stopVideo();
-            }
-            if(myImage != null) {
-                document.querySelector('.bg').src = myImage;
-            }
-            videolive = 1;
-        }
-        if(timer < 2 && videoid != null) {
-            player.playVideo();
-        }
         if (--timer < 0) {
             timer = 0;
-            document.querySelector('#time').style.visibility = "hidden";
-            if(videoid == null) {
-                document.querySelector('.bg').style.opacity = "1";
-                document.querySelector('.bg').style.zIndex = "5";
-            }
-            if(videoid != null && videolive == 1) {
-                document.querySelector('#player').style.zIndex = "20";
-                $('#player').css({
-                    'visibility':'visible',
-                    'opacity': '1'
-                });
-                videolive = 2;
-            }
-            if(videoid != null){
-                if(player.getPlayerState() == 0){
-                    $('#player').css({
-                        'visibility':'hidden'
-                    });
-                    document.querySelector('.bg').style.opacity = "1";
-                    document.querySelector('.bg').style.zIndex = "5";
-                };
-            }
+            // document.querySelector('#time').style.visibility = "hidden";
         }
     }, 1000);
 };
@@ -287,18 +202,6 @@ function parseVideo() {
         console.log("The youtube url is not valid.");
     }
 }
-var toggle = 0;
-function showSpecial() {
-    if(toggle == 0) {
-        document.querySelector('.specialOptions').style.height = "46px";
-        document.querySelector('.specialButton').innerHTML = "Hide";
-        toggle = 1;
-    } else if (toggle == 1) {
-        document.querySelector('.specialOptions').style.height = "0px";
-        document.querySelector('.specialButton').innerHTML = "More";
-        toggle = 0;
-    }
-}
 
 var counter = 0;
 
@@ -312,10 +215,4 @@ function information(){
         document.querySelector(".informationBox").style.height = "0px";
         counter = 0;
     }
-}
-function fillTest(){
-    document.querySelector("#mySeconds").value = "30";
-    showSpecial();
-    document.querySelector("#myVideoLink").value = "https://www.youtube.com/watch?v=z5xTF4JtsIE";
-    document.querySelector("#myImage").value = "https://raw.githubusercontent.com/Aaronkala/countdown-timer/master/Backgrounds/soap-arvokas3.jpg";
 }

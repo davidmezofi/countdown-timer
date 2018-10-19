@@ -1,5 +1,3 @@
-var myTime = {};
-
 function time() {
     var myMinutes = Number(document.getElementById("myMinutes").value);
     var mySeconds = Number(document.getElementById("mySeconds").value);
@@ -15,35 +13,11 @@ function openWindow() {
 
     left += window.screenX;
 
-    window.open("kello.html", 'countdown',
+    window.open("timer.html", 'countdown',
                 'resizable=1,scrollbars=1,fullscreen=0,height=1080,width=' +
                 width + ' , left=' + left + ', toolbar=0, menubar=0,status=1');
-    startTimer(duration, display);
     return 0;
 }
-
-function startTimer(duration, display) {
-    display = document.querySelector('#time');
-    var timer = duration,
-        minutes, seconds;
-    setInterval(function () {
-        minutes = parseInt(timer / 60, 10);
-        seconds = parseInt(timer % 60, 10);
-
-        minutes = minutes < 10 ? "0" + minutes : minutes;
-        seconds = seconds < 10 ? "0" + seconds : seconds;
-
-        display.textContent = minutes + ":" + seconds;
-        console.log(minutes + ":" + seconds);
-        if (--timer < 0) {
-            timer = 0;
-            // document.querySelector('#time').style.visibility = "hidden";
-        }
-    }, 1000);
-};
-
-function getTime() {
-};
 
 // Display input time on page load
 function displayTime() {
@@ -69,6 +43,26 @@ function displayTime() {
     startTimer(duration, display);
 }
 
+function startTimer(duration, display) {
+    display = document.querySelector('#time');
+    var timer = duration,
+        minutes, seconds;
+    setInterval(function () {
+        minutes = parseInt(timer / 60, 10);
+        seconds = parseInt(timer % 60, 10);
+
+        minutes = minutes < 10 ? "0" + minutes : minutes;
+        seconds = seconds < 10 ? "0" + seconds : seconds;
+
+        display.textContent = minutes + ":" + seconds;
+        console.log(minutes + ":" + seconds);
+        if (--timer < 0) {
+            timer = 0;
+        }
+    }, 1000);
+};
+
+// Fullscreen
 // Find the right method, call on correct element
 function launchIntoFullscreen(element) {
     if (element.requestFullscreen) {
@@ -82,6 +76,9 @@ function launchIntoFullscreen(element) {
     }
     getTime();
 }
+
+function getTime() {
+};
 
 // Handling the info button
 var counter = 0;
